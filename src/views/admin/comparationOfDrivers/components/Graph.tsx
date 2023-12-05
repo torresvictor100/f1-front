@@ -106,7 +106,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 	const [loading, setLoading] = useState("Select the years and Drivers");
 
 	const [urlSeason, setUrlSeason] = useState("Select the years and Drivers");
-	const [loadingDriver, setLoadingDriver] = useState(`http://52.67.97.170:8080/f1-graphics/seasons/season-drivers-ids/${selectYears}?`);
+	const [loadingDriver, setLoadingDriver] = useState(`https://www.fitapp.com.br:8080/f1-graphics/seasons/season-drivers-ids/${selectYears}?`);
 	const [dataLoadedDriver, setDataLoadedDriver] = useState(false);
 	const [driverOptions, setDriverOptions] = useState<{ label: string; value: string }[]>([]);
 	const [cleanClicked, setCleanClicked] = useState(false);
@@ -126,7 +126,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 
 	const fetchDataDriver = (selectYears: string) => {
 		setLoadingDriver('Loading...');
-		axios.get<DriversResponse>(`http://ergast.com/api/f1/${selectYears}/drivers.json?limit=150`)
+		axios.get<DriversResponse>(`https://ergast.com/api/f1/${selectYears}/drivers.json?limit=150`)
 			.then((response) => {
 				const data = response.data;
 				const drivers = data.MRData.DriverTable.Drivers;
@@ -172,7 +172,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 		if (nonEmptyPilots.length > 0) {
 			const pilotsQueryString = nonEmptyPilots.map((pilot) => `listDriversIdRequestDTO=${pilot}`).join('&');
 
-			const updatedUrlSeason = `http://52.67.97.170:8080/f1-graphics/seasons/season-drivers-ids/${selectYears}?${pilotsQueryString}`;
+			const updatedUrlSeason = `https://www.fitapp.com.br:8080/f1-graphics/seasons/season-drivers-ids/${selectYears}?${pilotsQueryString}`;
 
 			setUrlSeason(updatedUrlSeason)
 			fetchData(updatedUrlSeason);
