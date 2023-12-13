@@ -77,9 +77,9 @@ interface State {
 }
 
 export default function Default(props: {}) {
-  const baseUrl = "https://formula1data.com.br/f1-graphics/driverstandings/";
+  const baseUrl = "http://localhost:8080/f1-graphics/driverstandings/";
   const baseUrlContructios =
-    "https://formula1data.com.br/f1-graphics/constructorstandings/";
+    "http://localhost:8080/f1-graphics/constructorstandings/";
   const [constructionLeader, setConstructionLeader] =
     useState<ConstructorStanding>({
       position: "",
