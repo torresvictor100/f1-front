@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './assets/css/App.css';
 import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import ComparationOfDriversLayout from './layouts/comparationOfDrivers';
+import History from './layouts/history';
 import Home from './layouts/home';
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from './theme/theme';
@@ -12,6 +13,7 @@ ReactDOM.render(
 		<React.StrictMode>
 			<HashRouter>
 				<Switch>
+					<Route path={`/history`} component={History} />
 					<Route path={`/comparationOfDrivers`} component={ComparationOfDriversLayout} />
 					<Route path={`/home`} component={Home} />
 					<Redirect from='/' to='/home' />
