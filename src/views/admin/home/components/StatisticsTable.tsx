@@ -77,9 +77,9 @@ interface State {
 }
 
 export default function Default(props: {}) {
-  const baseUrl = "https://www.fitapp.com.br/f1-graphics/driverstandings/";
+  const baseUrl = "https://formula1data.com.br/f1-graphics/driverstandings/";
   const baseUrlContructios =
-    "https://www.fitapp.com.br/f1-graphics/constructorstandings/";
+    "https://formula1data.com.br/f1-graphics/constructorstandings/";
   const [constructionLeader, setConstructionLeader] =
     useState<ConstructorStanding>({
       position: "",
