@@ -249,18 +249,6 @@ export default function Default(props: {
 
         <GridItem>
           <FormControl>
-          <FormLabel>Yaxis Value Color</FormLabel>
-            <Input
-              type="color"
-              value={chartYaxisLabelColor}
-              onChange={(e) => setChartYaxisLabelColor(e.target.value)}
-              w="30%"
-            />
-          </FormControl>
-        </GridItem>
-
-        <GridItem>
-          <FormControl>
             <FormLabel>Yaxis Value Font Size</FormLabel>
             <Select
               value={chartYaxisLabelFontSize}
@@ -275,6 +263,18 @@ export default function Default(props: {
           </FormControl>
         </GridItem>
 
+        <GridItem>
+          <FormControl>
+          <FormLabel>Yaxis Value Color</FormLabel>
+            <Input
+              type="color"
+              value={chartYaxisLabelColor}
+              onChange={(e) => setChartYaxisLabelColor(e.target.value)}
+              w="30%"
+            />
+          </FormControl>
+        </GridItem>
+
       </Grid>
 
       <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4}>
@@ -286,7 +286,7 @@ export default function Default(props: {
               isChecked={chartXaxisLinesShow}
               onChange={() => setChartXaxisLinesShow(!chartXaxisLinesShow)}
             >
-              Show Lines Xaxis Show
+              Show Lines Xaxis
             </Checkbox>
           </FormControl>
         </GridItem>
@@ -298,7 +298,7 @@ export default function Default(props: {
               isChecked={chartYaxisLinesShow}
               onChange={() => setChartYaxisLinesShow(!chartYaxisLinesShow)}
             >
-              Show Lines Yaxis Show
+              Show Lines Yaxis
             </Checkbox>
           </FormControl>
         </GridItem>
