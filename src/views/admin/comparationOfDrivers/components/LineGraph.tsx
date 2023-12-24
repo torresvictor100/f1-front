@@ -28,8 +28,11 @@ export default function Default(props: {
   const [chartTitleColor, setChartTitleColor] = useState('#000');
   const [chartLabelColor, setChartLabelColor] = useState('#000');
   const [chartYaxisColor, setChartYaxisColor] = useState('#000');
+  const [chartLinesColor, setChartLinesColor] = useState('#000');
   const [chartYaxisLabelColor, setChartYaxisLabelColor] = useState('#000');
   const [chartYaxisShow, setChartYaxisShow] = useState(true);
+  const [chartYaxisLinesShow, setChartYaxisLinesShow] = useState(true);
+  const [chartXaxisLinesShow, setChartXaxisLinesShow] = useState(true);
   const [titleFontSize, setTitleFontSize] = useState('20');
   const [chartLabelFontSize, setLabelFontSize] = useState('13');
   const [chartYaxisTitleFontSize, setChartYaxisTitleFontSize] = useState('16');
@@ -101,18 +104,41 @@ export default function Default(props: {
     },
     grid: {
       show: true,
+      borderColor: chartLinesColor,
+      strokeDashArray: 0,
+      position: 'back',
+      xaxis: {
+          lines: {
+              show: chartYaxisLinesShow
+          }
+      },   
+      yaxis: {
+          lines: {
+              show: chartXaxisLinesShow
+          }
+      },  
+      row: {
+          colors: undefined,
+          opacity: 0.5
+      },  
       column: {
-        color: ['#7551FF', '#39B8FF'],
-        opacity: 0.5
-      }
-    }
+          colors: undefined,
+          opacity: 0.5
+      },  
+      padding: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0
+      },  
+  }
   };
 
   console.log(props.chartLabel);
 
   return (
     <>
-      <Grid templateColumns="2fr 1fr 1fr" gap={4}>
+      <Grid templateColumns="2fr 1fr 1fr 1fr" gap={4}>
         <GridItem>
           <FormControl>
           <FormLabel>Title Color</FormLabel>
@@ -239,13 +265,37 @@ export default function Default(props: {
 
       <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4}>
 
+      <GridItem>
+          <FormControl>
+            <FormLabel>Lines Xaxis Show</FormLabel>
+            <Checkbox
+              isChecked={chartXaxisLinesShow}
+              onChange={() => setChartXaxisLinesShow(!chartXaxisLinesShow)}
+            >
+              Show Lines Xaxis Show
+            </Checkbox>
+          </FormControl>
+        </GridItem>
+
         <GridItem>
           <FormControl>
-          <FormLabel>Label Color</FormLabel>
+            <FormLabel>Lines Yaxis Show</FormLabel>
+            <Checkbox
+              isChecked={chartYaxisLinesShow}
+              onChange={() => setChartYaxisLinesShow(!chartYaxisLinesShow)}
+            >
+              Show Lines Yaxis Show
+            </Checkbox>
+          </FormControl>
+        </GridItem>
+
+        <GridItem>
+          <FormControl>
+          <FormLabel>Lines Color</FormLabel>
             <Input
               type="color"
-              value={chartLabelColor} 
-              onChange={(e) => setChartLabelColor(e.target.value)}
+              value={chartLinesColor}
+              onChange={(e) => setChartLinesColor(e.target.value)}
               w="30%"
             />
           </FormControl>
@@ -264,6 +314,18 @@ export default function Default(props: {
                 </option>
               ))}
             </Select>
+          </FormControl>
+        </GridItem>
+
+        <GridItem>
+          <FormControl>
+          <FormLabel>Label Color</FormLabel>
+            <Input
+              type="color"
+              value={chartLabelColor} 
+              onChange={(e) => setChartLabelColor(e.target.value)}
+              w="30%"
+            />
           </FormControl>
         </GridItem>
 
