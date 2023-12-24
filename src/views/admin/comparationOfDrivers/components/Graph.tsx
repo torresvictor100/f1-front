@@ -300,7 +300,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 					<Text color={textColor} fontSize='30px' textAlign='start' fontWeight='700' lineHeight='100%'>
 						{loading && <p>{loading}</p>}
 					</Text>
-					{dataLoaded && <LineGraph chartData={driverPointsList} chartOptions={defautOptionsLine} chartLabel={raceSeasonName}/>}
+						<LineGraph chartData={driverPointsList} chartOptions={defautOptionsLine} chartLabel={raceSeasonName} dataLoaded={dataLoaded}/>
 				</Box>
 			</Flex>
 
