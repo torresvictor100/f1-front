@@ -1,4 +1,4 @@
-import { Box, Flex, Text, useColorModeValue } from '@chakra-ui/react';
+import { Box, Flex, Text, useColorModeValue , Spinner } from '@chakra-ui/react';
 
 import Card from 'components/card/Card';
 import SelectComponent from './SelectComponentDrivers';
@@ -103,7 +103,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 	);
 	const [years, setYears] = useState<string[]>([]);
 	const [selectYears, setSelectYears] = useState<string>("2023");
-	const [loading, setLoading] = useState("Select the years and Drivers");
+	const [loading, setLoading] = useState(false);
 
 	const [urlSeason, setUrlSeason] = useState("Select the years and Drivers");
 	const [loadingDriver, setLoadingDriver] = useState(`https://formula1data.com.br/f1-graphics/seasons/season-drivers-ids/${selectYears}?`);
@@ -150,7 +150,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 
 	const fetchData = (updatedUrlSeason: string) => {
 
-		setLoading('Loading...');
+		setLoading(true);
 
 		axios(updatedUrlSeason)
 			.then((resp) => {
@@ -158,14 +158,15 @@ export default function TotalSpent(props: { [x: string]: any }) {
 				setRaceSeasonName(resp.data.listNamesRacesResponseDTO.listNamesRacesDTO)
 				SetDriverPointsList(resp.data.driverPoints);
 			})
-			.finally(() => setDataLoaded(true));
+			.finally(() => setDataLoaded(true)).finally(() => setLoading(false));
 
-		setLoading('');
 	};
 
 
 
 	const handleButtonClick = () => {
+
+		handleCleanClick();
 
 		const nonEmptyPilots = selectedPilots.filter((pilot) => pilot.trim() !== '');
 
@@ -261,7 +262,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 			listNamesRacesResponseDTO: []
 		});
 
-		setLoading("Select the years and Drivers");
+		setLoading(false);
 
 	};
 
@@ -298,9 +299,9 @@ export default function TotalSpent(props: { [x: string]: any }) {
 			<Flex w='100%' flexDirection={{ base: 'column', lg: 'row' }}>
 				<Box minH='400px' minW='95%' mt='auto'>
 					<Text color={textColor} fontSize='30px' textAlign='start' fontWeight='700' lineHeight='100%'>
-						{loading && <p>{loading}</p>}
+					{loading ? <Spinner /> : null}
 					</Text>
-					{dataLoaded && <LineGraph chartData={driverPointsList} chartOptions={defautOptionsLine} chartLabel={raceSeasonName}/>}
+						<LineGraph chartData={driverPointsList} chartOptions={defautOptionsLine} chartLabel={raceSeasonName} dataLoaded={dataLoaded}/>
 				</Box>
 			</Flex>
 
