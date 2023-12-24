@@ -106,7 +106,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 	const [loading, setLoading] = useState(false);
 
 	const [urlSeason, setUrlSeason] = useState("Select the years and Drivers");
-	const [loadingDriver, setLoadingDriver] = useState(`http://localhost:8080/f1-graphics/seasons/season-drivers-ids/${selectYears}?`);
+	const [loadingDriver, setLoadingDriver] = useState(`https://formula1data.com.br/f1-graphics/seasons/season-drivers-ids/${selectYears}?`);
 	const [dataLoadedDriver, setDataLoadedDriver] = useState(false);
 	const [driverOptions, setDriverOptions] = useState<{ label: string; value: string }[]>([]);
 	const [cleanClicked, setCleanClicked] = useState(false);
@@ -173,7 +173,7 @@ export default function TotalSpent(props: { [x: string]: any }) {
 		if (nonEmptyPilots.length > 0) {
 			const pilotsQueryString = nonEmptyPilots.map((pilot) => `listDriversIdRequestDTO=${pilot}`).join('&');
 
-			const updatedUrlSeason = `http://localhost:8080/f1-graphics/seasons/season-drivers-ids/${selectYears}?${pilotsQueryString}`;
+			const updatedUrlSeason = `https://formula1data.com.br/f1-graphics/seasons/season-drivers-ids/${selectYears}?${pilotsQueryString}`;
 
 			setUrlSeason(updatedUrlSeason)
 			fetchData(updatedUrlSeason);

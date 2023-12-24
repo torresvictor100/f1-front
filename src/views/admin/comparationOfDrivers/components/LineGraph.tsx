@@ -25,12 +25,12 @@ export default function Default(props: {
 }) {
   const [chartTitle, setChartTitle] = useState('F1 Graphics');
   const [chartYaxisTitle, setChartYaxisTitle] = useState('Drivers');
-  const [chartTitleColor, setChartTitleColor] = useState('#000');
-  const [chartLabelColor, setChartLabelColor] = useState('#000');
-  const [chartYaxisColor, setChartYaxisColor] = useState('#000');
-  const [chartLinesColor, setChartLinesColor] = useState('#000');
+  const [chartTitleColor, setChartTitleColor] = useState('#ee0000');
+  const [chartLabelColor, setChartLabelColor] = useState('#1B2559');
+  const [chartYaxisColor, setChartYaxisColor] = useState('#ee0000');
+  const [chartLinesColor, setChartLinesColor] = useState('#817373');
   const [backgroundColor, setBackgroundColor] = useState('#fff');
-  const [chartYaxisLabelColor, setChartYaxisLabelColor] = useState('#000');
+  const [chartYaxisLabelColor, setChartYaxisLabelColor] = useState('#1B2559');
   const [chartYaxisShow, setChartYaxisShow] = useState(true);
   const [chartYaxisLinesShow, setChartYaxisLinesShow] = useState(true);
   const [chartXaxisLinesShow, setChartXaxisLinesShow] = useState(true);
@@ -143,7 +143,7 @@ export default function Default(props: {
       <Grid templateColumns="2fr 1fr 1fr 1fr" gap={4}>
         <GridItem>
           <FormControl>
-          <FormLabel>Title Color</FormLabel>
+          <FormLabel>Title</FormLabel>
             <Input
               type="text"
               value={chartTitle}
