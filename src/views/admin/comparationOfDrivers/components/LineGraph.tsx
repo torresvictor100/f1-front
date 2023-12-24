@@ -6,6 +6,8 @@ import {
   FormLabel,
   Grid,
   GridItem,
+  Checkbox,
+  Select,
 } from "@chakra-ui/react";
 import LineChart from 'components/charts/LineChart';
 
@@ -23,9 +25,12 @@ export default function Default(props: {
 }) {
   const [chartTitle, setChartTitle] = useState('F1 Graphics');
   const [chartYaxisTitle, setChartYaxisTitle] = useState('Drivers');
-  const [chartTitleColor, setChartTitleColor] = useState('#fff');
-  const [chartLabelColor, setChartLabelColor] = useState('#fff');
-  const [chartYaxisColor, setChartYaxisColor] = useState('#fff');
+  const [chartTitleColor, setChartTitleColor] = useState('#000');
+  const [chartLabelColor, setChartLabelColor] = useState('#000');
+  const [chartYaxisColor, setChartYaxisColor] = useState('#000');
+  const [chartYaxisShow, setChartYaxisShow] = useState(true);
+  const [chartYaxisTitleFontSize, setChartYaxisTitleFontSize] = useState('16');
+  const fontSizeOptions = Array.from({ length: 50 }, (_, index) => (index + 1).toString());
 
   const optionsLine: any = {
     chart: {
@@ -72,11 +77,11 @@ export default function Default(props: {
       }
     },
     yaxis: {
-      show: true,
+      show: chartYaxisShow,
       title: {
         text: chartYaxisTitle,
         style: {
-          fontSize: '16px',
+          fontSize: chartYaxisTitleFontSize,
           color: chartYaxisColor
         }
       }
@@ -100,6 +105,7 @@ export default function Default(props: {
       <Grid templateColumns="3fr 1fr" gap={4}>
         <GridItem>
           <FormControl>
+          <FormLabel>Title Color</FormLabel>
             <Input
               type="text"
               value={chartTitle}
@@ -111,6 +117,7 @@ export default function Default(props: {
 
         <GridItem>
           <FormControl>
+          <FormLabel>Title Color</FormLabel>
             <Input
               type="color"
               value={chartTitleColor}
@@ -121,7 +128,19 @@ export default function Default(props: {
         </GridItem>
       </Grid>
 
-      <Grid templateColumns="2fr 1fr 1fr" gap={4}>
+      <Grid templateColumns="1fr 1fr 1fr 1fr 1fr" gap={4}>
+      <GridItem>
+          <FormControl>
+            <FormLabel>Yaxis Show</FormLabel>
+            <Checkbox
+              isChecked={chartYaxisShow}
+              onChange={() => setChartYaxisShow(!chartYaxisShow)}
+            >
+              Show Yaxis
+            </Checkbox>
+          </FormControl>
+        </GridItem>
+
         <GridItem>
           <FormControl>
             <FormLabel>Yaxis Title</FormLabel>
@@ -131,6 +150,22 @@ export default function Default(props: {
               onChange={(e) => setChartYaxisTitle(e.target.value)}
               placeholder="Enter chart Yaxis title"
             />
+          </FormControl>
+        </GridItem>
+
+        <GridItem>
+          <FormControl>
+            <FormLabel>Yaxis Title Font Size</FormLabel>
+            <Select
+              value={chartYaxisTitleFontSize}
+              onChange={(e) => setChartYaxisTitleFontSize(e.target.value)}
+            >
+              {fontSizeOptions.map((size) => (
+                <option key={size} value={size}>
+                  {size}
+                </option>
+              ))}
+            </Select>
           </FormControl>
         </GridItem>
 
@@ -157,6 +192,7 @@ export default function Default(props: {
             />
           </FormControl>
         </GridItem>
+
       </Grid>
 
       <Box minH='400px' minW='95%' mt='auto'>
