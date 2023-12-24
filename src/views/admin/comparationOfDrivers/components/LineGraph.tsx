@@ -29,6 +29,7 @@ export default function Default(props: {
   const [chartLabelColor, setChartLabelColor] = useState('#000');
   const [chartYaxisColor, setChartYaxisColor] = useState('#000');
   const [chartLinesColor, setChartLinesColor] = useState('#000');
+  const [backgroundColor, setBackgroundColor] = useState('#fff');
   const [chartYaxisLabelColor, setChartYaxisLabelColor] = useState('#000');
   const [chartYaxisShow, setChartYaxisShow] = useState(true);
   const [chartYaxisLinesShow, setChartYaxisLinesShow] = useState(true);
@@ -44,7 +45,8 @@ export default function Default(props: {
       toolbar: {
         show: props.chartOptions.chart.toolbar.show
       },
-      dropShadow: props.chartOptions.chart.dropShadow
+      dropShadow: props.chartOptions.chart.dropShadow,
+      background: backgroundColor
     },
     title: {
       text: chartTitle,
@@ -130,7 +132,7 @@ export default function Default(props: {
           right: 0,
           bottom: 0,
           left: 0
-      },  
+      }  
   }
   };
 
@@ -174,6 +176,18 @@ export default function Default(props: {
               type="color"
               value={chartTitleColor}
               onChange={(e) => setChartTitleColor(e.target.value)}
+              w="30%"
+            />
+          </FormControl>
+        </GridItem>
+
+        <GridItem>
+          <FormControl>
+          <FormLabel>Background</FormLabel>
+            <Input
+              type="color"
+              value={backgroundColor}
+              onChange={(e) => setBackgroundColor(e.target.value)}
               w="30%"
             />
           </FormControl>
