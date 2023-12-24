@@ -28,10 +28,12 @@ export default function Default(props: {
   const [chartTitleColor, setChartTitleColor] = useState('#000');
   const [chartLabelColor, setChartLabelColor] = useState('#000');
   const [chartYaxisColor, setChartYaxisColor] = useState('#000');
+  const [chartYaxisLabelColor, setChartYaxisLabelColor] = useState('#000');
   const [chartYaxisShow, setChartYaxisShow] = useState(true);
   const [titleFontSize, setTitleFontSize] = useState('20');
   const [chartLabelFontSize, setLabelFontSize] = useState('13');
   const [chartYaxisTitleFontSize, setChartYaxisTitleFontSize] = useState('16');
+  const [chartYaxisLabelFontSize, setChartYaxisLabelFontSize] = useState('16');
   const fontSizeOptions = Array.from({ length: 50 }, (_, index) => (index + 1).toString());
 
   const optionsLine: any = {
@@ -86,7 +88,13 @@ export default function Default(props: {
           fontSize: chartYaxisTitleFontSize,
           color: chartYaxisColor
         }
-      }
+      },
+      labels: {
+        style: {
+          fontSize: chartYaxisLabelFontSize,
+          colors: chartYaxisLabelColor,
+        },
+      },
     },
     legend: {
       show: false
@@ -201,10 +209,42 @@ export default function Default(props: {
 
         <GridItem>
           <FormControl>
+          <FormLabel>Yaxis Value Color</FormLabel>
+            <Input
+              type="color"
+              value={chartYaxisLabelColor}
+              onChange={(e) => setChartYaxisLabelColor(e.target.value)}
+              w="30%"
+            />
+          </FormControl>
+        </GridItem>
+
+        <GridItem>
+          <FormControl>
+            <FormLabel>Yaxis Value Font Size</FormLabel>
+            <Select
+              value={chartYaxisLabelFontSize}
+              onChange={(e) => setChartYaxisLabelFontSize(e.target.value)}
+            >
+              {fontSizeOptions.map((size) => (
+                <option key={size} value={size}>
+                  {size}
+                </option>
+              ))}
+            </Select>
+          </FormControl>
+        </GridItem>
+
+      </Grid>
+
+      <Grid templateColumns="1fr 1fr 1fr 1fr 1fr 1fr" gap={4}>
+
+        <GridItem>
+          <FormControl>
           <FormLabel>Label Color</FormLabel>
             <Input
               type="color"
-              value={chartLabelColor}
+              value={chartLabelColor} 
               onChange={(e) => setChartLabelColor(e.target.value)}
               w="30%"
             />
