@@ -29,6 +29,7 @@ export default function Default(props: {
   const [chartLabelColor, setChartLabelColor] = useState('#000');
   const [chartYaxisColor, setChartYaxisColor] = useState('#000');
   const [chartYaxisShow, setChartYaxisShow] = useState(true);
+  const [titleFontSize, setTitleFontSize] = useState('20');
   const [chartYaxisTitleFontSize, setChartYaxisTitleFontSize] = useState('16');
   const fontSizeOptions = Array.from({ length: 50 }, (_, index) => (index + 1).toString());
 
@@ -47,7 +48,7 @@ export default function Default(props: {
       offsetY: 0,
       floating: false,
       style: {
-        fontSize: '20px',
+        fontSize: titleFontSize,
         fontWeight: 'bold',
         fontFamily: undefined,
         color: chartTitleColor
@@ -102,7 +103,7 @@ export default function Default(props: {
 
   return (
     <>
-      <Grid templateColumns="3fr 1fr" gap={4}>
+      <Grid templateColumns="2fr 1fr 1fr" gap={4}>
         <GridItem>
           <FormControl>
           <FormLabel>Title Color</FormLabel>
@@ -112,6 +113,22 @@ export default function Default(props: {
               onChange={(e) => setChartTitle(e.target.value)}
               placeholder="Enter chart title"
             />
+          </FormControl>
+        </GridItem>
+
+        <GridItem>
+          <FormControl>
+            <FormLabel>Title Font Size</FormLabel>
+            <Select
+              value={titleFontSize}
+              onChange={(e) => setTitleFontSize(e.target.value)}
+            >
+              {fontSizeOptions.map((size) => (
+                <option key={size} value={size}>
+                  {size}
+                </option>
+              ))}
+            </Select>
           </FormControl>
         </GridItem>
 
