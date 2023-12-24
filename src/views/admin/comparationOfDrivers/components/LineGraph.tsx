@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import {
   Box,
   Input,
+  FormControl,
+  FormLabel,
+  Grid,
+  GridItem,
 } from "@chakra-ui/react";
 import LineChart from 'components/charts/LineChart';
 
@@ -16,8 +20,8 @@ export default function Default(props: {
   chartLabel: string[];
   dataLoaded: boolean;
 }) {
-
-  const [titleText, setTitleText] = useState('F1 Graphics');
+  const [chartTitle, setChartTitle] = useState('F1 Graphics');
+  const [chartTitleColor, setChartTitleColor] = useState('#fff');
 
   const optionsLine: any = {
     chart: {
@@ -27,7 +31,7 @@ export default function Default(props: {
       dropShadow: props.chartOptions.chart.dropShadow
     },
     title: {
-      text: titleText,
+      text: chartTitle,
       align: 'center',
       margin: 10,
       offsetX: 0,
@@ -37,6 +41,7 @@ export default function Default(props: {
         fontSize: '20px',
         fontWeight: 'bold',
         fontFamily: undefined,
+        color: chartTitleColor
       }
     },
     tooltip: props.chartOptions.tooltip,
@@ -81,17 +86,33 @@ export default function Default(props: {
 
   return (
     <>
-    <Input
-        type="text"
-        value={titleText}
-        onChange={(e) => setTitleText(e.target.value)}
-        placeholder="Enter chart title"
-      />
-    <Box minH='400px' minW='95%' mt='auto'>
-     {props.dataLoaded && <LineChart chartData={props.chartData} chartOptions={optionsLine} />}
+      <Grid templateColumns="3fr 1fr" gap={4}>
+        <GridItem>
+          <FormControl>
+            <Input
+              type="text"
+              value={chartTitle}
+              onChange={(e) => setChartTitle(e.target.value)}
+              placeholder="Enter chart title"
+            />
+          </FormControl>
+        </GridItem>
 
-    </Box>
+        <GridItem>
+          <FormControl>
+            <Input
+              type="color"
+              value={chartTitleColor}
+              onChange={(e) => setChartTitleColor(e.target.value)}
+              w="30%"
+            />
+          </FormControl>
+        </GridItem>
+      </Grid>
+
+      <Box minH='400px' minW='95%' mt='auto'>
+        {props.dataLoaded && <LineChart chartData={props.chartData} chartOptions={optionsLine} />}
+      </Box>
     </>
-    
   );
 }
